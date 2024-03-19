@@ -1,5 +1,7 @@
 import { initializeApp } from "firebase/app";
-import {getAuth, signInWithRedirect, signInWithPopup, GoogleAuthProvider,createUserWithEmailAndPassword,signInWithEmailAndPassword} from 'firebase/auth';
+import {getAuth, signInWithRedirect, signInWithPopup,
+   GoogleAuthProvider,createUserWithEmailAndPassword,
+   signInWithEmailAndPassword,signOut,onAuthStateChanged} from 'firebase/auth';
 
 import {
     getFirestore,
@@ -29,7 +31,7 @@ const firebaseConfig = {
  
   export const auth = getAuth();
 
-  export const signInWithGooglePopup = ( )=> signInWithPopup(auth,provider);
+  export const signInWithGooglePopup = async ()=> await signInWithPopup(auth,provider);
 
   export const db = getFirestore();
 
@@ -68,3 +70,7 @@ const firebaseConfig = {
     if(!email || !password) return;
     return await signInWithEmailAndPassword(auth,email,password);
 }
+
+export const singOutUser = async () =>await signOut(auth);
+
+export const onAuthStateChangedListener = (callback) => onAuthStateChanged(auth,callback);

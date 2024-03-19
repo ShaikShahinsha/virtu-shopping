@@ -3,7 +3,7 @@ import { createAuthUserWithEmailAndPassword, createUserDocFromAuth,signInUserWit
 
 import FormInput from "../form-input/form-input.component";
 import './sign-in-form.styles.scss'
-import Button from "../button/button.component";
+import Button ,{ BUTTON_TYPE_CLASSES } from "../button/button.component";
 import { UserContext } from "../../contexts/user.context";
 
 const defaultFormFields = {
@@ -16,14 +16,15 @@ const SignInForm = () =>{
     const [formFields, setFormFields] = useState(defaultFormFields);
     const {email,password} = formFields;
 
-    const {setCurrentUser } = useContext(UserContext);
+   // const {setCurrentUser } = useContext(UserContext);
     const resetFormFields = () =>{
         setFormFields(defaultFormFields);
     }
 
     const signInWithGoogle = async() =>{
-        const {user} = await signInWithGooglePopup();
-        await createUserDocFromAuth(user);
+        //console.log("method called");
+        await signInWithGooglePopup();
+       // await createUserDocFromAuth(user);
       
     }
 
@@ -38,7 +39,7 @@ const SignInForm = () =>{
       
         try{
            const {user} =  await signInUserWithEmailAndPassword(email,password);
-           setCurrentUser(user);
+          // setCurrentUser(user);
            console.log(user);
             resetFormFields();
         }catch(error){
@@ -64,7 +65,9 @@ const SignInForm = () =>{
              
             <div className="buttons-container">
              <Button type="submit">Sign IN</Button>
-             <Button type="butto" buttonType='google' onSubmit={signInWithGoogle}>Google Sign IN</Button>
+             <Button buttonType='google' type='button' onClick={signInWithGoogle}>
+            SignInWithGoogle
+          </Button>
             </div>
             </form>
         </div>
