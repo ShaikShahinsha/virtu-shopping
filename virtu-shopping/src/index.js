@@ -6,6 +6,7 @@ import { UserProvider } from './contexts/user.context';
 import { ProductsProvider } from './contexts/products.context';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from 'react-router-dom';
+import { CartToggleProvider } from './contexts/carttoggle.context';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
@@ -13,7 +14,10 @@ root.render(
     <BrowserRouter>
     <UserProvider>
       <ProductsProvider>
+      <CartToggleProvider>
+
        <App />
+      </CartToggleProvider>
       </ProductsProvider>
     </UserProvider>
     </BrowserRouter>
