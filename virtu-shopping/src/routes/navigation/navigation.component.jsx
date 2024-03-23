@@ -10,7 +10,7 @@ import CartDropDown from "../../components/cart-dropdown/cart-dropdown.component
 import { CartToggleContext } from "../../contexts/carttoggle.context";
 const Navigation=() =>{
     const {currentUser} = useContext(UserContext);
-    const {isCartOpen} = useContext(CartToggleContext);
+    const {isCartOpen, cartCount} = useContext(CartToggleContext);
     // const signOutHandler = async () =>{
     //   await singOutUser();
     //   setCurrentUser(null);
@@ -32,7 +32,7 @@ const Navigation=() =>{
             </Link>)
            }
           <Link>
-           <CartIcon/>
+           <CartIcon />
         </Link>
         </div>
        { isCartOpen && <CartDropDown/>}
